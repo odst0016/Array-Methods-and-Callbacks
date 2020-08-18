@@ -32,20 +32,20 @@ function getFinals(data) {
 console.log(getFinals(fifaData));
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-function getYears(getFinals) {
-  const arr = getFinals;
+function getYears(getFinals, data) {
+  const arr = getFinals(data);
   const newArr = [];
   for (let i in arr) {
     newArr.push(arr[i]["Year"]);
   }
   return newArr;
 }
-console.log(getYears(getFinals(fifaData)));
+console.log(getYears(getFinals, fifaData));
 
 /* Task 4: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */
 
-function getWinners(getFinals) {
-  const arr = getFinals;
+function getWinners(getFinals, data) {
+  const arr = getFinals(data);
   const winners = [];
   for (let i in arr) {
     if (arr[i]["Away Team Goals"] > arr[i]["Home Team Goals"]) {
@@ -57,7 +57,7 @@ function getWinners(getFinals) {
   return winners;
 }
 
-console.log(getWinners, getFinals(fifaData));
+console.log(getWinners(getFinals, fifaData));
 
 /* Task 5: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
 
@@ -67,8 +67,8 @@ Parameters:
  */
 
 function getWinnersByYear(getWinners, getYears, getFinals, data) {
-  const arrYear = getYears(getFinals(data));
-  const arrWinners = getWinners(getFinals(data));
+  const arrYear = getYears(getFinals, data);
+  const arrWinners = getWinners(getFinals, data);
   const arrToReturn = [];
   for (let i in arrYear) {
     arrToReturn.push(`In ${arrYear[i]}, ${arrWinners[i]} won the world cup!`);
@@ -113,9 +113,7 @@ function getAverageGoals(data) {
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(/* code here */) {
-  /* code here */
-}
+function getCountryWins() {}
 
 getCountryWins();
 
